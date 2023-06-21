@@ -9,3 +9,4 @@ mv /vscode/node_modules ./
 mv /vscode/out-vscode-reh-web-min ./out
 mv /vscode/product.json ./
 mv /vscode/package.json ./
+mv /vscode/resources ./
