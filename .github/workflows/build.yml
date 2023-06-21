@@ -25,7 +25,7 @@ jobs:
         env:
           VSCODE_TAG: ${{ github.event.inputs.vscode_tag }}
         with:
-          name: kotborealis/code-server-oss
+          name: p1c2u/code-server-oss
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           cache: ${{ github.event_name != 'schedule' }}
