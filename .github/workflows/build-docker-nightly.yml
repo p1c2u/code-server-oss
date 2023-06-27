@@ -15,9 +15,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - id: git-metadata
+      - id: metadata
         shell: bash
-        run: echo "ref=$(echo ${GITHUB_REF:10})" >> $GITHUB_OUTPUT
+        run: echo "date=$(date +%Y%m%d%H%M%S)" >> $GITHUB_OUTPUT
       - uses: elgohr/Publish-Docker-Github-Action@v5
         env:
           VSCODE_TAG: master
@@ -27,4 +27,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           cache: ${{ github.event_name != 'schedule' }}
           buildargs: VSCODE_TAG
-          tags: "nightly-${{ steps.git-metadata.outputs.ref }}"
+          tags: "master-${{ steps.metadata.outputs.date }}"
