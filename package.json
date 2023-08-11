@@ -7,6 +7,6 @@
     "build-docker": "docker-compose build",
     "build": "npm run build-docker"
   },
-  "author": "kotborealis <kotborealis@awooo.ru>",
+  "author": "p1c2u <maciag.artur@gmail.com>",
   "license": "ISC"
 }
