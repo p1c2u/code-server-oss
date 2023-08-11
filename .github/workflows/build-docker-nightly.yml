@@ -20,7 +20,7 @@ jobs:
         run: echo "date=$(date +%Y%m%d%H%M%S)" >> $GITHUB_OUTPUT
       - uses: elgohr/Publish-Docker-Github-Action@v5
         env:
-          VSCODE_TAG: master
+          VSCODE_TAG: main
         with:
           name: p1c2u/code-server-oss
           username: ${{ secrets.DOCKER_USERNAME }}
