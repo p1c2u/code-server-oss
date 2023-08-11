@@ -27,4 +27,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           cache: ${{ github.event_name != 'schedule' }}
           buildargs: VSCODE_TAG
-          tags: "master-${{ steps.metadata.outputs.date }}"
+          tags: "${{ env.VSCODE_TAG }}-${{ steps.metadata.outputs.date }}"
