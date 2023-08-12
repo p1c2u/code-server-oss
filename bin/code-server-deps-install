@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+set -ex
+
+# Electron and browsers are not required
+# for code-server build.
+export ELECTRON_SKIP_BINARY_DOWNLOAD=1
+export PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
+
+# Install deps
+
+# Remove telemetry libs
+sed -i -e 's#"@vscode/telemetry-extractor": "^1.9.9",##g' package.json
+
+# Install node_modules
+yarn $@
