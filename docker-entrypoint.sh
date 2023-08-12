@@ -2,13 +2,11 @@
 
 set -ex
 
-# Get project root di
-ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-export NODE=$(find ${ROOT}/.build/ -name 'node' -type f -executable)
+# Get project root dir
+ROOT="$(pwd)"
 
 code_server () {
-  $NODE $ROOT/out/server-main.js $@
+  $ROOT/node $ROOT/out/server-main.js $@
 }
 
 echo "Preinstalling extensions..."

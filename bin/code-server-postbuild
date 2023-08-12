@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+set -ex
+
+# Symlink to compiled build
+ln -s /usr/src/vscode-reh-web-linux-$(dpkg --print-architecture) /usr/src/code-server-oss

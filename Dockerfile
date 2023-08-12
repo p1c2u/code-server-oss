@@ -36,17 +36,15 @@ RUN code-server-src-patch
 COPY ./bin/code-server-compile /usr/src/bin/code-server-compile
 RUN code-server-compile
 
+COPY ./bin/code-server-postbuild /usr/src/bin/code-server-postbuild
+RUN code-server-postbuild
+
 FROM node:18
+
+COPY --from=builder /usr/src/code-server-oss /code-server-oss
+RUN chmod +x /code-server-oss/out/server-main.js
 
 WORKDIR /code-server-oss
 
-COPY --from=builder /usr/src/vscode/.build ./
-COPY --from=builder /usr/src/vscode/extensions ./
-COPY --from=builder /usr/src/vscode/node_modules ./
-COPY --from=builder /usr/src/vscode/out-vscode-reh-web-min ./out
-COPY --from=builder /usr/src/vscode/product.json ./
-COPY --from=builder /usr/src/vscode/package.json ./
-COPY --from=builder /usr/src/vscode/resources ./
-
 COPY ./docker-entrypoint.sh /
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
