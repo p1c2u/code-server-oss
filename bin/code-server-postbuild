@@ -2,5 +2,10 @@
 
 set -ex
 
+arch=$(dpkg --print-architecture)
+if [[ $arch == "amd64" ]]; then
+    arch="x64"
+fi
+
 # Symlink to compiled build
-ln -s /usr/src/vscode-reh-web-linux-$(dpkg --print-architecture) /usr/src/code-server-oss
+ln -s /usr/src/vscode-reh-web-linux-${arch} /usr/src/code-server-oss

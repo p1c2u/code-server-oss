@@ -7,7 +7,7 @@ docker/build/test:
 vscode:
 	git clone --progress --filter=tree:0 https://github.com/microsoft/vscode.git --branch=main ./vscode
 
-code-server/build: code-server/deps-install code-server/src-patch build/steps/build
+code-server/build: code-server/deps-install code-server/src-patch code-server/compile
 
 code-server/deps-install: export PATH := $(shell pwd)/bin:$(PATH)
 code-server/deps-install: vscode

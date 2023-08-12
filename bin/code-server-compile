@@ -2,5 +2,10 @@
 
 set -ex
 
+arch=$(dpkg --print-architecture)
+if [[ $arch == "amd64" ]]; then
+    arch="x64"
+fi
+
 # Compile
-yarn gulp vscode-reh-web-linux-$(dpkg --print-architecture)-min
+yarn gulp vscode-reh-web-linux-${arch}-min
