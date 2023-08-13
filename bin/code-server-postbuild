@@ -3,7 +3,7 @@
 set -ex
 
 arch=$(dpkg --print-architecture)
-if [[ $arch == "amd64" ]]; then
+if [ "$arch" = "amd64" ]; then
     arch="x64"
 fi
 
