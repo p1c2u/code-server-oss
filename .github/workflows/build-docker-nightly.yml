@@ -18,6 +18,8 @@ jobs:
       - id: metadata
         shell: bash
         run: echo "date=$(date +%Y%m%d%H%M%S)" >> $GITHUB_OUTPUT
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
       - uses: elgohr/Publish-Docker-Github-Action@v5
         env:
           VSCODE_TAG: main
@@ -25,6 +27,7 @@ jobs:
           name: p1c2u/code-server-oss
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+          platforms: linux/amd64,linux/arm64
           cache: ${{ github.event_name != 'schedule' }}
           buildargs: VSCODE_TAG
           tags: "${{ env.VSCODE_TAG }}-${{ steps.metadata.outputs.date }}"
