@@ -27,6 +27,9 @@ RUN git clone --progress --filter=tree:0 https://github.com/microsoft/vscode.git
 
 WORKDIR /usr/src/vscode
 
+RUN yarn config set registry https://registry.npmjs.org/
+RUN yarn config set network-timeout 1200000
+
 COPY ./bin/code-server-deps-install /usr/src/bin/code-server-deps-install
 RUN code-server-deps-install
 
