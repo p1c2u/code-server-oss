@@ -27,7 +27,10 @@ jobs:
           name: p1c2u/code-server-oss
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          platforms: linux/amd64,linux/arm64
+          # Can't build arm64 based docker image
+          # See https://github.com/p1c2u/code-server-oss/issues/1
+          #platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           cache: ${{ github.event_name != 'schedule' }}
           buildargs: VSCODE_TAG
           tags: "${{ github.event.inputs.vscode_tag }}"
