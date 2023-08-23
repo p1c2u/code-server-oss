@@ -1,4 +1,4 @@
-FROM node:18 as builder
+FROM node:18 as base
 
 ARG VSCODE_TAG=main
 ARG HTTP_PROXY
@@ -15,7 +15,10 @@ RUN apt-get update && \
         dbus \
         xvfb \
         libgtk-3-0 \
-        libgbm1
+        libgbm1 \
+        vim
+
+FROM base as builder
 
 # Proxy is only needed during git clone and yarn
 ENV HTTP_PROXY=$HTTP_PROXY
@@ -42,14 +45,7 @@ RUN code-server-compile
 COPY ./bin/code-server-postbuild /usr/src/bin/code-server-postbuild
 RUN code-server-postbuild
 
-FROM node:18
-
-# Runtime deps
-RUN apt-get update && \
-    apt-get autoclean && \
-    apt-get install -y \
-        libsecret-1-0 \
-        vim
+FROM base as release
 
 COPY --from=builder /usr/src/code-server-oss /code-server-oss
 RUN chmod +x /code-server-oss/out/server-main.js
