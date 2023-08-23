@@ -44,6 +44,13 @@ RUN code-server-postbuild
 
 FROM node:18
 
+# Runtime deps
+RUN apt-get update && \
+    apt-get autoclean && \
+    apt-get install -y \
+        libsecret-1-0 \
+        vim
+
 COPY --from=builder /usr/src/code-server-oss /code-server-oss
 RUN chmod +x /code-server-oss/out/server-main.js
 
