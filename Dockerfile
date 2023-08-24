@@ -52,8 +52,7 @@ RUN apt-get update && \
         vim \
         zsh \
         fish \
-        tmux \
-        pwsh
+        tmux
 
 COPY --from=builder /usr/src/code-server-oss /code-server-oss
 RUN chmod +x /code-server-oss/out/server-main.js
