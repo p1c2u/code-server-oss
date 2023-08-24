@@ -54,6 +54,10 @@ RUN apt-get update && \
         fish \
         tmux
 
+RUN wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O - | zsh || true
+
+RUN git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.12.0
+
 COPY --from=builder /usr/src/code-server-oss /code-server-oss
 RUN chmod +x /code-server-oss/out/server-main.js
 
