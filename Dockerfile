@@ -1,4 +1,4 @@
-FROM node:16 as base
+FROM node:18 as base
 
 ARG VSCODE_TAG=main
 ARG HTTP_PROXY
