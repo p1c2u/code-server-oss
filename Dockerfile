@@ -62,6 +62,8 @@ RUN apt-get update && \
 
 RUN wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O - | zsh || true
 
+RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
+
 RUN git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.12.0
 
 COPY --from=builder /usr/src/code-server-oss /code-server-oss
