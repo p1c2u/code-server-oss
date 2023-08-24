@@ -46,9 +46,15 @@ RUN code-server-postbuild
 
 FROM base as release
 
+ENV LC_ALL en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+
 RUN apt-get update && \
     apt-get autoclean && \
     apt-get install -y \
+        locales \
+        locales-all \
         vim \
         zsh \
         fish \
