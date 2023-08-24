@@ -1,4 +1,4 @@
-FROM node:18 as base
+FROM node:16 as base
 
 ARG VSCODE_TAG=main
 ARG HTTP_PROXY
@@ -15,8 +15,7 @@ RUN apt-get update && \
         dbus \
         xvfb \
         libgtk-3-0 \
-        libgbm1 \
-        vim
+        libgbm1
 
 FROM base as builder
 
@@ -46,6 +45,15 @@ COPY ./bin/code-server-postbuild /usr/src/bin/code-server-postbuild
 RUN code-server-postbuild
 
 FROM base as release
+
+RUN apt-get update && \
+    apt-get autoclean && \
+    apt-get install -y \
+        vim \
+        zsh \
+        fish \
+        tmux \
+        pwsh
 
 COPY --from=builder /usr/src/code-server-oss /code-server-oss
 RUN chmod +x /code-server-oss/out/server-main.js
