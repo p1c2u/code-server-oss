@@ -55,6 +55,8 @@ RUN apt-get update && \
     apt-get install -y \
         locales \
         locales-all \
+        git-crypt \
+        less \
         vim \
         zsh \
         fish \
