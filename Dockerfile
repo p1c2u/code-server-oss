@@ -1,4 +1,6 @@
-FROM node:18 as base
+# Version from .nvmrc
+# See https://github.com/microsoft/vscode/issues/194665
+FROM node:18.17 as base
 
 ARG VSCODE_TAG=main
 ARG HTTP_PROXY
