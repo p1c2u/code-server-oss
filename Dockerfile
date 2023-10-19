@@ -24,6 +24,9 @@ ENV HTTP_PROXY=$HTTP_PROXY
 ENV HTTPS_PROXY=$HTTPS_PROXY
 ENV PATH=/usr/src/bin:$PATH
 ENV VSCODE_TAG=$VSCODE_TAG
+# Not building from source results in issue
+# See https://github.com/microsoft/vscode/issues/135100
+ENV npm_config_build_from_source=true
 
 RUN git clone --progress --filter=tree:0 https://github.com/microsoft/vscode.git --branch=$VSCODE_TAG /usr/src/vscode
 
